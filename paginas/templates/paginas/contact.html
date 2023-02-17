@@ -1,0 +1,57 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+{% block title %}Contato{% endblock title %}
+
+{% block information %}
+<div class="container pb-1 border-bottom shadow">
+    <div class="row bg-white p-5 text-black">
+        <h1 class="fw-bold">Entre em contato</h1>
+        <p class="text-secondary">Formas de contato: </p>
+        
+         <!-- Coluna 1/2 -->
+        <div class="col">
+            <div class="my-5 text-black ">
+                <h3 class="fw-semibold">Central de atendimento</h3>
+                <p class='text-secondary mb-3'>Telefones:</p>
+                <a href="tel://1699720-0984">
+                    <p class="mb-1 py-1 me-auto "><img src="{% static "img/base/telefone.png" %}" width="25" heigth="25"> (16) 99720-0984</p>
+                </a>
+                <a href="https://wa.me/5516997200984" target="_blank">
+                    <p class="my-1 py-1"> <img src="{% static "img/base/whatsapp.png" %}" width="25" heigth="25"> (16) 99720-0984</p>
+                </a>
+            </div>
+
+            <div>
+                <h3 class="fw-semibold">Redes sociais</h3>
+                <a href="https://www.facebook.com/profile.php?id=100063787081374" target="_blank">
+                    <p class="my-1 py-1"> <img src="{% static "img/base/facebook.png" %}" width="25" heigth="25"> Raffles.Ticket</p>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <p class="mt-1 py-1"><img src="{% static "img/base/instagram.png" %}" width="25" heigth="25"> Raffles.Ticket</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Coluna 2/2 -->
+        <div class="col">
+            <div class="my-5">
+                <h3>Horário de atendimento</h3>
+                <p class='text-secondary py-1'><img src="{% static "img/base/relogio.png" %}" width="25" heigth="25"> Segunda a Segunda <strong class="text-black">24hrs</strong></p>
+            </div>
+
+            <div class="my-5">
+                <h3>Email</h3>
+                <a href="mailto:alexsandro@594@gmail.com">
+                    <p class='text-secondary py-1'><img src="{% static "img/base/gmail.png" %}" width="25" heigth="25"><strong class="text-black"> support@raffles.com</strong></p>
+                </a>
+            </div>
+            <div class="my-5">
+                <h3 class="">Endereço</h3>
+                <a href="#">
+                    <p><img src="{% static "img/base/mapa.png" %}" width="25" heigth="25">#</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock information %}

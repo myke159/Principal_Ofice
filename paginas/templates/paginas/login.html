@@ -1,0 +1,33 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+{% block title %}Entrar{% endblock title %}
+
+{% block main-content %}
+<div class="container py-5">
+    <div class="row my-3 pb-5">
+        <div class="col-sm-6 offset-sm-3">
+            <h3>Entrar</h3>
+            <hr>
+            <form action="" method="post" novalidate class="shadow p-5">
+                {% csrf_token %}
+                {% for fm in form %}
+                    {{fm.label_tag}}{{fm}}<small class="text-danger">{{fm.errors|striptags}}</small>
+                    <br>
+                {% endfor %}
+                <small><a href="">Esqueceu a senha?</a></small>
+                <br>
+                <input type="submit" class="btn btn-primary mt-4" value="login"/>
+                <div class="text-center text-primary font-weight-bold">
+                    <small>Novo usuário? <a href="{% url 'customerregistrationview' %}" class="text-danger"> Crie uma conta</a></small>
+                </div>
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

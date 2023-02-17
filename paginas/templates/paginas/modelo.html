@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'ecom/css/owl.carousel.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'ecom/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'ecom/css/style.css' %}"/>
+
+  <title>Raffles | {% block title %}{% endblock title %}</title>
+  <link rel="shortcut icon" href="{% static 'ecom/images/base/favicon.ico' %}" type="image/x-icon">
+</head>
+<body class="bg-white">
+  <nav class="navbar navbar-expand-lg px-3 pe-2" data-bs-theme="dark" style="background-color: #181616;" >
+    <div class="container-fluid px-5">
+  
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static "ecom/images/base/logo.png" %}" width="32" heigth="32">
+      </a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rifas</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">Quem Somos</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contato</a>
+          </li>
+        </ul>
+
+        <!-- LOGIN/CADASTRO -->
+        {% if request.user.is_authenticated %}
+        <ul class="navbar-nav fw-bold">
+          <li class="nav-item dropdown text-white">
+            <a class="nav-link dropdown-toggle active text-capitalize" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ request.user }} 
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Minhas Rifas</a></li>
+                <li><a class="dropdown-item" href="#">Trocar Senha</a></li>
+                <li><a class="dropdown-item" href="#">F.A.Q</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Deslogar</a></li>
+            </ul>
+          </li>
+        </ul>
+                  
+        <a href="#">
+          <button type="button" class="btn btn-white position-relative">
+            <img src="{% static "ecom/images/base/ticket-white.png" %}" width="25" heigth="25">
+            </span>
+          </button>
+        </a>
+        <!-- FIM-LOGIN/CADASTRO -->
+        {% else %}
+        <ul class="navbar-nav fw-bold">
+          <li class="nav-item dropdown text-white">
+            <button type="button" class="btn btn-white text-white mx-1 fw-bold text-dark border border-2 border-success"><a href="{% url 'login' %}">Entrar</a></button>
+          </li>
+          <li class="nav-item dropdown text-white">
+            <button type="button" class="btn btn-white text-white mx-1 fw-bold text-dark border border-2 border-info"><a href="{% url 'customerregistrationview' %}">Cadastro</a></button>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+    
+    <div class="container">{% block banner-slider %}{% endblock banner-slider %}</div>
+    <div class="container">{% block information %}{% endblock information %}</div>
+      <div class="container">{% block main-content %}{% endblock main-content %}</div>
+
+    <footer class="container-fluid text-white bg-dark text-center p-2 mt-5 fixed-bottom">
+      Copyright : 2023 | <strong>Raffles</strong> | <small>LLS Log Software</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    
+    <script src="{% static 'ecom/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'ecom/js/all.min.js' %}"></script>
+    <script src="{% static 'ecom/js/myscript.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+

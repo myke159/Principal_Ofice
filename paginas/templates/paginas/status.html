@@ -1,0 +1,82 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% block title %}Rifas{% endblock title %}
+
+
+{% block information %}
+<div class="container">
+    <div class="container mt-4">
+      <div class="mb-5">
+        <h3><span class="border-warning border-bottom border-5 text-black">NOSSAS </span> <strong class="text-warning fw-superbold">RIFAS</strong></h3>
+        <p class="text-secondary">Todas as rifas</p>
+      </div>
+      <div class="container text-center">
+
+        <!-- STATUS COLOR -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center ">
+          {% if val.title == "Ativo"%}
+          <button type="button" class="btn btn-white bg-success text-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-success"><a href="{% url 'status' 'ativo' %}">Ativas</a></button>
+          <button type="button" class="btn btn-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-info"><a href="{% url 'status' 'aguardando-sorteio' %}">Aguardando Sorteio</a></button>
+          <button type="button" class="btn btn-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-danger"><a href="{% url 'status' 'finalizado' %}">Encerradas</a></button>
+          {% endif %}
+
+          {% if val.title == "Aguardando-Sorteio"%}
+          <button type="button" class="btn btn-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-success"><a href="{% url 'status' 'ativo' %}">Ativas</a></button>
+          <button type="button" class="btn btn-white bg-info text-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-info"><a href="{% url 'status' 'aguardando-sorteio' %}">Aguardando Sorteio</a></button>
+          <button type="button" class="btn btn-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-danger"><a href="{% url 'status' 'finalizado' %}">Encerradas</a></button>
+          {% endif %}
+
+          {% if val.title == "Finalizado"%}
+          <button type="button" class="btn btn-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-success"><a href="{% url 'status' 'ativo' %}">Ativas</a></button>
+          <button type="button" class="btn btn-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-info"><a href="{% url 'status' 'aguardando-sorteio' %}">Aguardando Sorteio</a></button>
+          <button type="button" class="btn btn-white bg-danger text-white d-grid gap-2 col-3 my-1 fw-bold text-dark border border-2 border-danger"><a href="{% url 'status' 'finalizado' %}">Encerradas</a></button>
+          {% endif %}
+        </div>
+        <!-- FIM-STATUS COLOR -->
+        
+        <div class="row mt-5">
+          <!-- Produto -->
+            {% for raff in raffle %}
+              <!-- Produto 1/2 -->
+              <div class="col p-0 m-1 border rounded-3">
+                <div class="bg-white">
+
+                  <div>
+                    <img class="rounded-2 rounded-bottom-0" src="{{ raff.raffle_image.url }}" width="200px" heigth="600px">
+                  </div>
+
+                </div>
+                <div class="border-secondary-subtle p-1 mt-2 ">
+
+                  <!-- Descrição -->
+                  <h5 class=" m-0 fw-bold">{{ raff.title }}</h5>
+                  <ul class="text-start mt-2 mb-2">
+                    <li>Quantia de rifas: <strong class="text-decoration-underline">{{ raff.numbersof_raffles }}</strong> números.</li>
+                    <li>Não perca a oportunidade de concorrer!</li>
+                  </ul>
+                  <!-- FIM-Descrição -->
+
+                  <!-- Progresso -->
+                  <p class="text-start fw-bold mb-0 ">Progresso:</p>
+                  <div class="progress mb-2" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated fw-semibold" style="width: 75%">75%</div>
+                  </div>
+                  <!-- FIM-Progresso -->
+
+                  <!-- Comprar -->
+                  <a href="#">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                      <button class="btn btn-success fw-bold" type="button">Comprar</button>
+                    </div>
+                  </a>
+                  <!-- FIM-Comprar -->
+                </div>
+              </div>
+              <!-- FIM-Produto 1/2 -->
+            {% endfor %}
+          <!-- FIM-produto -->
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock information %}
