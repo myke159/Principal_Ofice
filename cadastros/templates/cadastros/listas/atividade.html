@@ -1,0 +1,47 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+{% block title %}Atividades{% endblock title %}
+
+
+{% block main-content %}
+<h3>Lista de Atividades registradas</h3>
+
+<a href="{% url 'cadastrar-atividade' %}" class="btn btn-primary btn-sm">Adicionar Atividade</a>
+
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>Número</th>
+            <th>Descrição</th>
+            <th>Pontos</th>
+            <th>Detalhes</th>
+            <th>Campo</th>
+            <th>Opções</th>
+        </tr>
+
+        {% for atividade in object_list %}
+        <tr>
+            <th>{{ atividade.numero }}</th>
+            <th>{{ atividade.descricao }}</th>
+            <th>{{ atividade.pontos }}</th>
+            <th>{{ atividade.detalhes }}</th>
+            <th>{{ atividade.campo }}</th>
+            <th>
+                <a href="{% url 'editar-atividade' atividade.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                <a href="{% url 'excluir-atividade' atividade.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+            </th>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <th colspan="3">Nenhuma Atividade registrada.</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock main-content %}
