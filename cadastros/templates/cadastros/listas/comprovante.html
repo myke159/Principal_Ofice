@@ -1,0 +1,46 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+{% block title %}Lista Comprovantes{% endblock title %}
+
+{% block conteudo %}
+<h3>
+    Lista de comprovantes registrados
+    <a href="{% url 'cadastrar-comprovante' %}" class="btn btn-primary btn-sm float-right">Adicionar comprovante</a>
+</h3>
+
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>Progressão</th>
+            <th>Atividade</th>
+            <th>Data</th>
+            <th>Data final</th>
+            <th>Servidor</th>
+            <th>Arquivo</th>
+            <th>Opções</th>
+        </tr>
+    
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.progressao }}</td>
+            <td>{{ object.atividade }}</td>
+            <td>{{ object.data }}</td>
+            <td>{{ object.data_final }}</td>
+            <td>{{ object.usuario }}</td>
+            <th><a href="{{ object.arquivo.url }}">Ver</a></th>
+            <th>
+                <a href="{% url 'editar-comprovante' object.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                <a href="{% url 'excluir-comprovante' object.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+            </th>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhuma comprovante registrado.</td>
+        </tr>
+        {% endfor %}
+    
+    </table>
+</div>
+{% endblock %}

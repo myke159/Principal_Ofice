@@ -1,9 +1,9 @@
 {% extends 'paginas/modelo.html' %}
 {% load static %}
-{% block title %}Atividades{% endblock title %}
+{% block title %}Lista Atividades{% endblock title %}
 
 
-{% block main-content %}
+{% block conteudo %}
 <h3>Lista de Atividades registradas</h3>
 
 <a href="{% url 'cadastrar-atividade' %}" class="btn btn-primary btn-sm">Adicionar Atividade</a>
@@ -44,4 +44,4 @@
 
 
 
-{% endblock main-content %}
+{% endblock conteudo %}

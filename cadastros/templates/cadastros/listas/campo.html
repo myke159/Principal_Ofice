@@ -1,9 +1,9 @@
 {% extends 'paginas/modelo.html' %}
 {% load static %}
-{% block title %}Campos{% endblock title %}
+{% block title %}Lista Campos{% endblock title %}
 
 
-{% block main-content %}
+{% block conteudo %}
 <h3>Lista de Campos registrados</h3>
 
 <a href="{% url 'cadastrar-campo' %}" class="btn btn-primary btn-sm">Adicionar Campo</a>
@@ -37,4 +37,4 @@
 
 
 
-{% endblock main-content %}
+{% endblock conteudo %}
