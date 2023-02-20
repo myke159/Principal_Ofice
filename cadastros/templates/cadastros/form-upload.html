@@ -1,0 +1,26 @@
+{% extends 'paginas/modelo.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Cadastros{% endblock title %}
+
+
+{% block conteudo %}
+<h3>{{ titulo }}</h3>
+<p class="lead">
+    Preencha todos os campos obrigatórios.
+</p>
+<hr>
+<form action="" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form|crispy }}
+    
+    <button typy="submit" class="btn btn-primary mt-3">{{ botao }}</button>
+
+</form>
+
+{% endblock conteudo %}

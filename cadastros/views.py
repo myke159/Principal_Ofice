@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
 
+from django.shortcuts import get_object_or_404
+
 ###############                                      ###############
 ############################## CREATE ##############################
 ###############                                      ###############
@@ -21,9 +23,8 @@ class CampusCreate(LoginRequiredMixin, CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['titulo'] = "Cadastro de Campus"
+        context['titulo'] = "Cadastro de Campu"
         context['botao'] = "Cadastrar"
-        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
         return context
 
@@ -90,7 +91,7 @@ class ComprovanteCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Comprovante
     fields = ['progressao', 'atividade', 'quantidade', 'data', 'data_final', 'arquivo']
-    template_name = 'cadastros/form.html'
+    template_name = 'cadastros/form-upload.html'
     success_url = reverse_lazy('listar-comprovante')
 
     def form_valid(self, form):  
@@ -125,7 +126,7 @@ class CampusUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['titulo'] = "Editar cadastro de Campus"
+        context['titulo'] = "Editar cadastro de Campu"
         context['botao'] = "Salvar"
 
         return context
@@ -170,9 +171,9 @@ class ProgressaoUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-progressao')
 
-    """def get_object(self, queryset=None):
+    def get_object(self, queryset=None):
         self.object = get_object_or_404(Progressao, pk=self.kwargs['pk'], usuario=self.request.user)
-        return self.object"""
+        return self.object
 
 class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
@@ -196,13 +197,13 @@ class ComprovanteUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     model = Comprovante
     fields = ['progressao', 'atividade', 'quantidade', 'data', 'data_final', 'arquivo']
-    template_name = 'cadastros/form.html'
+    template_name = 'cadastros/form-upload.html'
     success_url = reverse_lazy('listar-comprovante')
 
-    """def get_object(self, queryset=None):
-        self.object = get_object_or_404(
-            Comprovante, pk=self.kwargs['pk'], usuario=self.request.user)
-        return self.object"""
+    def form_valid(self, form):  
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -255,9 +256,9 @@ class ProgressaoDelete(LoginRequiredMixin, DeleteView):
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-progressao')
 
-    """def get_object(self, queryset=None):
+    def get_object(self, queryset=None):
         self.object = get_object_or_404(Progressao, pk=self.kwargs['pk'], usuario=self.request.user)
-        return self.object"""
+        return self.object
 
 class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')

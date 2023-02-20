@@ -69,10 +69,8 @@
               {{ request.user }}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Minhas Rifas</a></li>
-                <li><a class="dropdown-item" href="#">Trocar Senha</a></li>
-                <li><a class="dropdown-item" href="#">F.A.Q</a></li>
+              <li><a class="dropdown-item" href="{% url 'atualizar-dados' %}">Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Alterar Senha</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
             </ul>
@@ -82,7 +80,7 @@
             <a class="nav-link active" href="{% url 'login' %}">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Cadastrar</a>
+            <a class="nav-link active" href="{% url 'registrar' %}">Cadastrar</a>
           </li>
           {% endif %}
 
@@ -109,9 +107,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     
-    <script src="{% static 'ecom/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'ecom/js/all.min.js' %}"></script>
-    <script src="{% static 'ecom/js/myscript.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <script src="{% static 'js/myscript.js' %}"></script>
+    
+
+    {% block scripts %}{% endblock scripts %}
+
+    
 </body>
 </html>
 

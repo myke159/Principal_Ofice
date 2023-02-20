@@ -8,7 +8,7 @@
 
 
 {% block conteudo %}
-<h3>Cadastros</h3>
+<h3>{{ titulo }}</h3>
 <p class="lead">
     Preencha todos os campos obrigatórios.
 </p>
@@ -19,8 +19,34 @@
 
     {{ form|crispy }}
     
-    <button typy="submit" class="btn btn-primary mt-3">Cadastrar</button>
+    <button typy="submit" class="btn btn-primary mt-3">{{ botao }}</button>
 
 </form>
 
 {% endblock conteudo %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+
+    $(document).ready(function(){
+
+    $('#id_data_inicial').mask('00/00/0000', {placeholder: "__/__/____"});
+    $('#id_data_final').mask('00/00/0000', {placeholder: "__/__/____"});
+    $('#id_cpf').mask('000.000.000-00');
+    var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+      },
+      spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+          }
+      };
+      
+      $('#id_telefone').mask(SPMaskBehavior, spOptions);
+
+    });
+
+</script>
+{% endblock scripts %}

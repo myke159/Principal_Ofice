@@ -94,7 +94,7 @@ class Comprovante(models.Model):
     data = models.DateField()
     data_final = models.DateField(null=True, blank=True, help_text=
                                   "Informar apenas se o comprovante for relativo a um período.")
-    arquivo = models.FileField(upload_to=user_path)
+    arquivo = models.FileField(upload_to='pdf/')
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
