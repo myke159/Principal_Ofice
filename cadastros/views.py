@@ -362,6 +362,10 @@ class ComprovanteList(LoginRequiredMixin, ListView):
     model = Comprovante
     template_name = 'cadastros/listas/comprovante.html'
 
+    def get_queryset(self):
+        self.object_list = Comprovante.objects.filter(usuario=self.request.user)
+        return self.object_list
+
 
 class ValidacaoList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')

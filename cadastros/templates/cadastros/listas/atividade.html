@@ -11,47 +11,78 @@
 <hr>
 
 <div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>Número</th>
-            <th>Descrição</th>
-            <th>Pontos</th>
-            <th>Detalhes</th>
-            <th>Campo</th>
-            <th>Opções</th>
-        </tr>
-
-        {% for atividade in object_list %}
-        <tr>
-            <th>{{ atividade.numero }}</th>
-            <th>{{ atividade.descricao }}</th>
-            <th>{{ atividade.pontos }}</th>
-            <th>{{ atividade.detalhes }}</th>
-            <th>{{ atividade.campo }}</th>
-            <th>
-                <a href="{% url 'editar-atividade' atividade.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
-                <a href="{% url 'excluir-atividade' atividade.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
-            </th>
-        </tr>
-
-        {% empty %}
-        <tr>
-            <th colspan="3">Nenhuma Atividade registrada.</th>
-        </tr>
-        {% endfor %}
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Descrição</th>
+                <th>Pontos</th>
+                <th>Detalhes</th>
+                <th>Campo</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atividade in object_list %}
+            <tr>
+                <th>{{ atividade.numero }}</th>
+                <th>{{ atividade.descricao }}</th>
+                <th>{{ atividade.pontos }}</th>
+                <th>{{ atividade.detalhes }}</th>
+                <th>{{ atividade.campo }}</th>
+                <th>
+                    <a href="{% url 'editar-atividade' atividade.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                    <a href="{% url 'excluir-atividade' atividade.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                </th>
+            </tr>
+            {% empty %}
+            <tr>
+                <th colspan="3">Nenhuma Atividade registrada.</th>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </div>
 
 {% endblock conteudo %}
 
-{% comment %} {% block scripts %}
+{% block scripts %}
     <script>
 
         $(document).ready(function(){
+            $('#tabela-listar').DataTable();
 
-        alert("Importação ok!")
-
+            $('#tabela-listar').DataTable({
+                responsive: true,
+                // "bSort": false,
+                "aaSorting": [],
+                "pageLength": 50,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Sem dados disponíveis",
+                    "info": "Mostrando de START até END de TOTAL registos",
+                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
+                    "infoFiltered": "(filtrado de MAX registos no total)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar MENU registos",
+                    "loadingRecords": "A carregar dados...",
+                    "processing": "A processar...",
+                    "search": "Procurar:",
+                    "zeroRecords": "Não foram encontrados resultados",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Seguinte",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": ordem crescente",
+                        "sortDescending": ": ordem decrescente"
+                    }
+                }
+            });
         });
 
     </script>
-{% endblock scripts %} {% endcomment %}
+{% endblock scripts %}
